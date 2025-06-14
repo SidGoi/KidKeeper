@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Kid - KidKeeper</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo"><span>Kid</span>Keeper</div>
+      <div class="btns">
+        <a href="/"><button class="btn orange-btn">Go Back</button></a>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="title">Add New Kid</div>
+      <form method="post">
+        {% csrf_token %}
+        <input
+          type="text"
+          name="kid_name"
+          placeholder="Kid Name"
+          value="{{ kid.kid_name }}"
+          required
+        /><br /><br />
+
+        <input
+          type="text"
+          name="father_name"
+          placeholder="Father's Name"
+          value="{{ kid.father_name }}"
+          required
+        /><br /><br />
+
+        <input
+          type="text"
+          name="surename"
+          placeholder="Surname"
+          value="{{ kid.surename }}"
+          required
+        /><br /><br />
+
+        <input
+          type="text"
+          name="standard"
+          placeholder="Standard"
+          value="{{ kid.standard }}"
+          required
+        /><br /><br />
+
+        <input
+          type="date"
+          name="birthdate"
+          value="{{ kid.birthdate|date:'Y-m-d' }}"
+          required
+        /><br /><br />
+
+        <input
+          type="text"
+          name="mobile_number"
+          placeholder="Mobile Number"
+          value="{{ kid.mobile_number }}"
+          required
+        /><br /><br />
+
+        <button type="submit" class="btn green-btn">Update Kid</button>
+      </form>
+    </div>
+  </body>
+</html>

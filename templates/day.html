@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{date}} Attendance - KidKeeper</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo"><span>Kid</span>Keeper</div>
+      <div class="btns">
+        <a href="{% url 'view_attendance' %}">
+          <button class="btn orange-btn">Go Back</button></a
+        >
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="title">Kids Present on {{date}}</div>
+      <div class="dates">
+        {% for r in records %}
+
+        <div class="dateBox">
+          <div class="dateText">{{ r.kid.kid_name }} {{ r.kid.surename }}</div>
+          <span> (Std: {{ r.kid.standard }}) </span>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
+<!-- 
+<div class="dates">
+  {% for r in records %}
+  <div class="dateBox">
+    <div class="dateText">
+      {{ r.kid.kid_name }} {{ r.kid.surename }}
+      <span> (Std: {{ r.kid.standard }}) </span>
+    </div>
+    {% empty %}
+    <div class="dateText">No one was present on this day.</div>
+  </div>
+  {% endfor %}
+</div> -->

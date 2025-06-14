@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KidKeeper - BalSabha Management System</title>
+
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo"><span>Kid</span>Keeper</div>
+      <div class="btns">
+        <a href="{% url 'take_attendance' %}"
+          ><button class="btn orange-btn">Take Attendance</button></a
+        >
+        <a href="{% url 'view_attendance' %}"
+          ><button class="btn green-btn">View Attendance</button></a
+        >
+      </div>
+    </nav>
+    <div class="container">
+      <div class="head">
+        <div class="title">All Kids Data</div>
+        <a href="{% url 'add' %}">
+          <button class="btn blue-btn">Add Kid</button>
+        </a>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Standard</th>
+            <th>Mobile Number</th>
+            <th>Edit/Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for d in data %}
+
+          <tr>
+            <td>{{ d.kid_name }} {{ d.father_name }} {{ d.surename }}</td>
+            <td>{{d.standard}}</td>
+            <td>{{d.mobile_number}}</td>
+            <td>
+              <a href="{% url 'edit' d.id %}">
+                <button class="btn btn-sm yellow-btn">Edit</button>
+              </a>
+              <a href="{% url 'delete' d.id %}">
+                <button class="btn btn-sm red-btn">Delete</button>
+              </a>
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

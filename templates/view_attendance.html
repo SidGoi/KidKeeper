@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Attendance - KidKeeper</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo"><span>Kid</span>Keeper</div>
+      <div class="btns">
+        <a href="/"><button class="btn orange-btn">Go Back</button></a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="title">Attendance Summary</div>
+
+      <div class="dates">
+        {% for record in attendance_summary %}
+        <a href="{% url 'attendance_by_date' record.date %}">
+          <div class="dateBox">
+            <div class="dateText">{{ record.date }}</div>
+            <span>
+              Present:
+              <span style="font-weight: 600">
+                {{ record.total_present }} Balak</span
+              >
+            </span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

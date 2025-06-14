@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Take Attendance - KidKeeper</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo"><span>Kid</span>Keeper</div>
+      <div class="btns">
+        <a href="/"><button class="btn orange-btn">Go Back</button></a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="head">
+        <div class="title">Take Attendance</div>
+      </div>
+      <form method="post" action="{% url 'submit_attendance' %}">
+        {% csrf_token %}
+
+        <div class="dateInput">
+          <label style="font-size: 1.2rem" for="date">Select dat -</label>
+          <input value="{{ today }}" type="date" name="date" id="date" />
+        </div>
+
+        {% for kid in kids %}
+        <div class="names">
+          <div class="name-box">
+            <input type="checkbox" id="kid-{{ kid.id }}" name="{{ kid.id }}" />
+            <label for="kid-{{ kid.id }}">
+              {{ kid.kid_name }} {{ kid.father_name }} {{ kid.surename }}
+            </label>
+          </div>
+          {% endfor %}
+
+          <button class="btn green-btn">Submit Attendance</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
